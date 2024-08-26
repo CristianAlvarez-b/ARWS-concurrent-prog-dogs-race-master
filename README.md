@@ -10,11 +10,13 @@ Creación, puesta en marcha y coordinación de hilos.
 
 1. Revise el programa “primos concurrentes” (en la carpeta parte1), dispuesto en el paquete edu.eci.arsw.primefinder. Este es un programa que calcula los números primos entre dos intervalos, distribuyendo la búsqueda de los mismos entre hilos independientes. Por ahora, tiene un único hilo de ejecución que busca los primos entre 0 y 30.000.000. Ejecútelo, abra el administrador de procesos del sistema operativo, y verifique cuantos núcleos son usados por el mismo.
 Se puede ver en las gráficas al ejecutar el programa que se utilizan los 8 núcleos del procesador, aunque algunos tienen más porcentaje de carga que otros.
+
 ![image](https://github.com/user-attachments/assets/ec50f384-5b90-4004-a249-fac05a366328)
 
-2. Modifique el programa para que, en lugar de resolver el problema con un solo hilo, lo haga con tres, donde cada uno de éstos hará la tarcera parte del problema original. Verifique nuevamente el funcionamiento, y nuevamente revise el uso de los núcleos del equipo.
+3. Modifique el programa para que, en lugar de resolver el problema con un solo hilo, lo haga con tres, donde cada uno de éstos hará la tarcera parte del problema original. Verifique nuevamente el funcionamiento, y nuevamente revise el uso de los núcleos del equipo.
    
 Vuelve a utilizar los 8 núcleos, tienen todos un pico alto de uso pero a diferencia del caso anterior, el tiempo de uso de la CPU es mucho menor y la tarea se termina rápido.
+
 ![image](https://github.com/user-attachments/assets/d95bfbeb-ed38-4614-a0e7-e87288002fad)
 
 3. Lo que se le ha pedido es: debe modificar la aplicación de manera que cuando hayan transcurrido 5 segundos desde que se inició la ejecución, se detengan todos los hilos y se muestre el número de primos encontrados hasta el momento. Luego, se debe esperar a que el usuario presione ENTER para reanudar la ejecución de los mismo.
@@ -58,17 +60,29 @@ Taller.
     dichas inconsistencias). A partir de esto, identifique las regiones
     críticas () del programa.
     Las posiciones son inconsistentes, varios galgos repiten posiciones cada vez que se ejecuta
+    
     ![image](https://github.com/user-attachments/assets/852808b2-1b6b-4e40-861c-b920faa03587)
 
 
-4.  Utilice un mecanismo de sincronización para garantizar que a dichas
+3.  Utilice un mecanismo de sincronización para garantizar que a dichas
     regiones críticas sólo acceda un hilo a la vez. Verifique los
     resultados.
 
-5.  Implemente las funcionalidades de pausa y continuar. Con estas,
+   ![image](https://github.com/user-attachments/assets/4d93689f-9578-4d16-a191-f0e7f1df4529)
+
+   ![image](https://github.com/user-attachments/assets/eee8bac9-6df3-48b0-b7f9-ac96560701f0)
+
+4.  Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
     deberían dormirse, y cuando se haga clic en ‘Continue’ los mismos
     deberían despertarse y continuar con la carrera. Diseñe una solución que permita hacer esto utilizando los mecanismos de sincronización con las primitivas de los Locks provistos por el lenguaje (wait y notifyAll).
+
+   -Creamos una variable booleana para saber si se esta pausado, esta debe sincronizarse entre todos los hilos, por eso se considero como una nueva región crítica
+   ![image](https://github.com/user-attachments/assets/489d4c79-b43f-410f-a386-d06532a66b4d)
+   -Luego implementamos funciones para actualizar los estados de la carrera
+   ![image](https://github.com/user-attachments/assets/e411243d-097d-4019-8437-4351c97c4b57)
+   - Por último usamos estas funciones en el main para que funcionen con los botones
+     ![image](https://github.com/user-attachments/assets/f15e35ea-cacb-41bf-85c1-d7e97482aed8)
 
 
 ## Criterios de evaluación
